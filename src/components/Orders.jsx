@@ -119,7 +119,7 @@ function Orders() {
                 <div className="container">
                   <div className="d-flex mb-4 align-items-center">
                     {/* Buscador */}
-                    <div className="d-flex w-50 buscador rounded p-0">
+                    <div className="d-flex buscador rounded p-0">
                       <label hidden htmlFor="carSearcher">
                         hey
                       </label>
@@ -129,7 +129,6 @@ function Orders() {
                         className="form-control buscador-styles color-text-our-white border-0 rounded-0 rounded-start"
                         name="carSearcher"
                         id="carSearcher"
-                        placeholder="Look into the orders"
                       />
                       <button className="button-search rounded-end fw-bold px-3 m-0 h-100">
                         <i className="bi bi-search"></i>
@@ -139,60 +138,66 @@ function Orders() {
                   <h1 className="saira-expanded-more-bold mb-2">Orders</h1>
 
                   {/* Tabla */}
-                  <Table striped bordered hover responsive variant="light">
-                    <thead>
-                      <tr>
-                        <th>Id</th>
-                        <th>User</th>
-                        <th>Status</th>
-                        <th>Address</th>
-                        <th>List</th>
-                        <th>Total</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {orders
-                        ?.filter(
-                          (order) =>
-                            order?.user?.firstname?.toLowerCase().includes(buscador.toLowerCase()) |
-                            order?.user?.lastname?.toLowerCase().includes(buscador.toLowerCase()) |
-                            order?.status?.toLowerCase().includes(buscador.toLowerCase()) |
-                            order?.address?.toLowerCase().includes(buscador.toLowerCase()),
-                        )
-                        ?.map((order) => (
-                          <tr key={order?.id}>
-                            <td>{order?.id}</td>
-                            <td>
-                              {order?.user?.firstname} {order?.user?.lastname}
-                            </td>
-                            <td>{order?.status}</td>
-                            <td>{order?.address}</td>
-                            <td>
-                              {order?.productList?.map((car) =>
-                                car.qty < 2 ? (
-                                  <li className="list-order-styles" key={car?.nanoId}>
-                                    {car?.brand?.name} {car?.model} - 1 unit
-                                  </li>
-                                ) : (
-                                  <li className="list-order-styles" key={car?.nanoId}>
-                                    {car?.brand?.name} {car?.model} - {car?.qty} units
-                                  </li>
-                                ),
-                              )}
-                            </td>
-                            <td>${formatNumber(totalPurchase(order), 0)} </td>
-                            <td>
-                              <i
-                                onClick={() => showModalEdit(order)}
-                                className="bi bi-pencil-fill me-2 cursor-pointer"
-                              ></i>
-                              <i onClick={(event) => handleDelete(order, event)}></i>
-                            </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </Table>
+                  <div className="scroll-table">
+                    <Table striped bordered hover responsive variant="light">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>User</th>
+                          <th>Status</th>
+                          <th>Address</th>
+                          <th>List</th>
+                          <th>Total</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {orders
+                          ?.filter(
+                            (order) =>
+                              order?.user?.firstname
+                                ?.toLowerCase()
+                                .includes(buscador.toLowerCase()) |
+                              order?.user?.lastname
+                                ?.toLowerCase()
+                                .includes(buscador.toLowerCase()) |
+                              order?.status?.toLowerCase().includes(buscador.toLowerCase()) |
+                              order?.address?.toLowerCase().includes(buscador.toLowerCase()),
+                          )
+                          ?.map((order) => (
+                            <tr key={order?.id}>
+                              <td>{order?.id}</td>
+                              <td>
+                                {order?.user?.firstname} {order?.user?.lastname}
+                              </td>
+                              <td>{order?.status}</td>
+                              <td>{order?.address}</td>
+                              <td>
+                                {order?.productList?.map((car) =>
+                                  car.qty < 2 ? (
+                                    <li className="list-order-styles" key={car?.nanoId}>
+                                      {car?.brand?.name} {car?.model} - 1 unit
+                                    </li>
+                                  ) : (
+                                    <li className="list-order-styles" key={car?.nanoId}>
+                                      {car?.brand?.name} {car?.model} - {car?.qty} units
+                                    </li>
+                                  ),
+                                )}
+                              </td>
+                              <td>${formatNumber(totalPurchase(order), 0)} </td>
+                              <td>
+                                <i
+                                  onClick={() => showModalEdit(order)}
+                                  className="bi bi-pencil-fill me-2 cursor-pointer"
+                                ></i>
+                                <i onClick={(event) => handleDelete(order, event)}></i>
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </Table>
+                  </div>
                 </div>
               )}
             </div>

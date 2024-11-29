@@ -38,7 +38,7 @@ function NavbarTop() {
             to="/"
           >
             <i className="bi bi-house-gear-fill me-2 me-sm-3"></i>
-            <span className="m-0">Dashboard</span>
+            <span className="m-0 span-disappear-navbar">Dashboard</span>
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -47,7 +47,7 @@ function NavbarTop() {
             to="/products"
           >
             <i className="bi bi-car-front-fill me-2 me-sm-3"></i>
-            <span className="m-0"> Products</span>
+            <span className="m-0 span-disappear-navbar">Products</span>
           </NavLink>
 
           <NavLink
@@ -57,7 +57,7 @@ function NavbarTop() {
             to="/brands"
           >
             <i className="bi bi-shield-fill-check me-2 me-sm-3"></i>
-            <span className="m-0">Brands</span>
+            <span className="m-0 span-disappear-navbar">Brands</span>
           </NavLink>
 
           <NavLink
@@ -67,7 +67,7 @@ function NavbarTop() {
             to="/orders"
           >
             <i className="bi bi-box-seam-fill me-2 me-sm-3"></i>
-            <span className="m-0">Orders</span>
+            <span className="m-0 span-disappear-navbar">Orders</span>
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -76,14 +76,14 @@ function NavbarTop() {
             to="/admins"
           >
             <i className="bi bi-person-circle me-2 me-sm-3"></i>
-            <span className="m-0">Admins</span>
+            <span className="m-0 span-disappear-navbar">Admins</span>
           </NavLink>
         </div>
 
         <div className="w-100 d-flex align-items-center">
           <NavLink onClick={showModal} className="link-inactive mt-auto d-flex align-items-center">
             <i className="me-3 bi bi-box-arrow-right"></i>
-            <p className="m-0">Logout </p>
+            <p className="m-0 span-disappear-navbar">Logout </p>
           </NavLink>
         </div>
       </Nav>

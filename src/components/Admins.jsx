@@ -131,7 +131,7 @@ function Admins() {
               <div className="container">
                 <div className="d-flex mb-4 align-items-center mb-4">
                   {/* Buscador */}
-                  <div className="d-flex w-50 buscador p-0">
+                  <div className="d-flex buscador p-0">
                     <label hidden htmlFor="carSearcher">
                       hey
                     </label>
@@ -141,7 +141,6 @@ function Admins() {
                       className="form-control buscador-styles color-text-our-white border-0 rounded-0 rounded-start"
                       name="carSearcher"
                       id="carSearcher"
-                      placeholder="Look into the admins"
                     />
                     <button className="button-search rounded-end fw-bold px-3 m-0 h-100">
                       <i className="bi bi-search"></i>
@@ -159,44 +158,46 @@ function Admins() {
                   </div>
                 </div>
                 {/* Tabla */}
-                <Table striped bordered hover variant="light">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {admins
-                      ?.filter(
-                        (admin) =>
-                          admin?.firstname?.toLowerCase().includes(buscador.toLowerCase()) |
-                          admin?.lastname?.toLowerCase().includes(buscador.toLowerCase()) |
-                          admin?.email?.toLowerCase().includes(buscador.toLowerCase()),
-                      )
-                      ?.map((admin) => (
-                        <tr key={admin?.id}>
-                          <td>{admin?.id}</td>
-                          <td>{admin?.firstname}</td>
-                          <td>{admin?.lastname}</td>
-                          <td>{admin?.email}</td>
-                          <td>
-                            <i
-                              onClick={() => showModalEdit(admin)}
-                              className="bi bi-pencil-fill me-2 cursor-pointer"
-                            ></i>
-                            <i
-                              onClick={() => showModalDelete(admin)}
-                              className="ms-2 bi bi-trash-fill cursor-pointer"
-                            ></i>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </Table>
+                <div className="scroll-table">
+                  <Table striped bordered hover variant="light">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {admins
+                        ?.filter(
+                          (admin) =>
+                            admin?.firstname?.toLowerCase().includes(buscador.toLowerCase()) |
+                            admin?.lastname?.toLowerCase().includes(buscador.toLowerCase()) |
+                            admin?.email?.toLowerCase().includes(buscador.toLowerCase()),
+                        )
+                        ?.map((admin) => (
+                          <tr key={admin?.id}>
+                            <td>{admin?.id}</td>
+                            <td>{admin?.firstname}</td>
+                            <td>{admin?.lastname}</td>
+                            <td>{admin?.email}</td>
+                            <td>
+                              <i
+                                onClick={() => showModalEdit(admin)}
+                                className="bi bi-pencil-fill me-2 cursor-pointer"
+                              ></i>
+                              <i
+                                onClick={() => showModalDelete(admin)}
+                                className="ms-2 bi bi-trash-fill cursor-pointer"
+                              ></i>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </Table>
+                </div>
               </div>
             </div>
           </div>

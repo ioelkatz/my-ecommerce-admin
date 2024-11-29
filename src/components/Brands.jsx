@@ -116,7 +116,6 @@ function Brands() {
                       className="form-control buscador-styles color-text-our-white border-0 rounded-0 rounded-start"
                       name="carSearcher"
                       id="carSearcher"
-                      placeholder="Look into the brands"
                     />
                     <button className="button-search rounded-end fw-bold px-3 m-0 h-100">
                       <i className="bi bi-search"></i>
@@ -135,37 +134,39 @@ function Brands() {
                   </div>
                 </div>
                 {/* Tabla */}
-                <Table striped bordered hover variant="light">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Brand</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {brands
-                      ?.filter((brand) =>
-                        brand?.name?.toLowerCase().includes(buscador.toLowerCase()),
-                      )
-                      ?.map((brand) => (
-                        <tr key={brand.id}>
-                          <td>{brand?.id}</td>
-                          <td>{brand?.name}</td>
-                          <td>
-                            <i
-                              onClick={() => showModalEdit(brand)}
-                              className="bi bi-pencil-fill me-2 cursor-pointer"
-                            ></i>
-                            <i
-                              onClick={(event) => showModalDelete(brand, event)}
-                              className="ms-2 bi bi-trash-fill cursor-pointer"
-                            ></i>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </Table>
+                <div className="scroll-table">
+                  <Table striped bordered hover variant="light">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Brand</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {brands
+                        ?.filter((brand) =>
+                          brand?.name?.toLowerCase().includes(buscador.toLowerCase()),
+                        )
+                        ?.map((brand) => (
+                          <tr key={brand.id}>
+                            <td>{brand?.id}</td>
+                            <td>{brand?.name}</td>
+                            <td>
+                              <i
+                                onClick={() => showModalEdit(brand)}
+                                className="bi bi-pencil-fill me-2 cursor-pointer"
+                              ></i>
+                              <i
+                                onClick={(event) => showModalDelete(brand, event)}
+                                className="ms-2 bi bi-trash-fill cursor-pointer"
+                              ></i>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </Table>
+                </div>
               </div>
             </div>
           </div>
