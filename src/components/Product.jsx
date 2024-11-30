@@ -85,11 +85,11 @@ function Product({ car }) {
         <td>
           <i
             onClick={() => showModalEdit(car)}
-            className="bi bi-pencil-fill me-2 cursor-pointer"
+            className="bi bi-pencil-fill me-1 me-md-2 cursor-pointer"
           ></i>
           <i
             onClick={(event) => handleDelete(car, event)}
-            className="ms-2 bi bi-trash-fill cursor-pointer"
+            className="ms-1 ms-md-2 bi bi-trash-fill cursor-pointer"
           ></i>
         </td>
       </tr>

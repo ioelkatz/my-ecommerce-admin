@@ -131,7 +131,7 @@ function Orders() {
                         id="carSearcher"
                       />
                       <button className="button-search rounded-end fw-bold px-3 m-0 h-100">
-                        <i className="bi bi-search"></i>
+                        <i className="bi bi-search color-text-night"></i>
                       </button>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ function Orders() {
 
                   {/* Tabla */}
                   <div className="scroll-table">
-                    <Table striped bordered hover responsive variant="light">
+                    <Table striped bordered hover responsive variant="light shadow-sm">
                       <thead>
                         <tr>
                           <th>Id</th>
@@ -220,7 +220,6 @@ function Orders() {
               </label>
               <select
                 className="form-select mb-3 input-modal-styles rounded-0"
-                /* placeholder={order?.status} */
                 id="status"
                 name="status"
                 onChange={handleStatus}

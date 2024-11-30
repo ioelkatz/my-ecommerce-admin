@@ -44,6 +44,7 @@ function Admins() {
   const [email, setEmail] = useState(admin?.email);
   const [password, setPassword] = useState(admin?.email);
   const [typePassword, setTypePassword] = useState("text");
+  const [errorEmail, setErrorEmail] = useState("");
 
   const handleFirstname = (e) => {
     setFirstname(e.target.value);
@@ -73,6 +74,7 @@ function Admins() {
 
   const showModalCreate = () => {
     setModalCreate(true);
+    setErrorEmail("");
   };
 
   const hideModalDelete = () => {
@@ -98,14 +100,19 @@ function Admins() {
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    const call = await axios({
-      method: "POST",
-      url: `${import.meta.env.VITE_API_URL}/admins`,
-      data: { firstname, lastname, email, password },
-      headers: { authorization: `Bearer ${token}` },
-    });
-    dispatch(createAdmin(call.data));
-    setModalCreate(false);
+    const existsEmail = admins.find((admin) => admin.email === e.target.email.value);
+    if (existsEmail) {
+      setErrorEmail("Sorry, this email already exists.");
+    } else {
+      const call = await axios({
+        method: "POST",
+        url: `${import.meta.env.VITE_API_URL}/admins`,
+        data: { firstname, lastname, email, password },
+        headers: { authorization: `Bearer ${token}` },
+      });
+      dispatch(createAdmin(call.data));
+      setModalCreate(false);
+    }
   };
 
   const handleDelete = async (event) => {
@@ -143,7 +150,7 @@ function Admins() {
                       id="carSearcher"
                     />
                     <button className="button-search rounded-end fw-bold px-3 m-0 h-100">
-                      <i className="bi bi-search"></i>
+                      <i className="bi bi-search color-text-night"></i>
                     </button>
                   </div>
                   {/* Boton + */}
@@ -158,8 +165,9 @@ function Admins() {
                   </div>
                 </div>
                 {/* Tabla */}
+
                 <div className="scroll-table">
-                  <Table striped bordered hover variant="light">
+                  <Table striped bordered hover variant="light shadow-sm">
                     <thead>
                       <tr>
                         <th>Id</th>
@@ -183,16 +191,20 @@ function Admins() {
                             <td>{admin?.firstname}</td>
                             <td>{admin?.lastname}</td>
                             <td>{admin?.email}</td>
-                            <td>
-                              <i
-                                onClick={() => showModalEdit(admin)}
-                                className="bi bi-pencil-fill me-2 cursor-pointer"
-                              ></i>
-                              <i
-                                onClick={() => showModalDelete(admin)}
-                                className="ms-2 bi bi-trash-fill cursor-pointer"
-                              ></i>
-                            </td>
+                            {admin.id === 1 ? (
+                              <td></td>
+                            ) : (
+                              <td>
+                                <i
+                                  onClick={() => showModalEdit(admin)}
+                                  className="bi bi-pencil-fill me-1 me-md-2 cursor-pointer"
+                                ></i>
+                                <i
+                                  onClick={() => showModalDelete(admin)}
+                                  className="ms-1 ms-md-2 bi bi-trash-fill cursor-pointer"
+                                ></i>
+                              </td>
+                            )}
                           </tr>
                         ))}
                     </tbody>
@@ -299,40 +311,47 @@ function Admins() {
             <p className="m-0 saira-expanded-bold">Create a new admin</p>
             <hr />
             <form onSubmit={handleCreate} method="PATCH">
-              <label className="mb-1" htmlFor="Firstname">
+              <label className="mb-1" htmlFor="firstname">
                 Firstname
               </label>
               <input
                 required
                 className="form-control mb-3 input-modal-styles rounded-0"
                 type="text"
-                id="Firstname"
-                name="Firstname"
+                id="firstname"
+                name="firstname"
                 onChange={handleFirstname}
               />
-              <label className="mb-1" htmlFor="Lastname">
+              <label className="mb-1" htmlFor="lastname">
                 Lastname
               </label>
               <input
                 required
                 className="form-control mb-3 input-modal-styles rounded-0"
                 type="text"
-                id="Lastname"
-                name="Lastname"
+                id="lastname"
+                name="lastname"
                 onChange={handleLastname}
               />
-              <label className="mb-1" htmlFor="Email">
+              <label className="mb-1" htmlFor="email">
                 Email
               </label>
-              <input
-                required
-                className="form-control mb-3 input-modal-styles rounded-0"
-                type="email"
-                id="Email"
-                name="Email"
-                onChange={handleEmail}
-              />
-              <label className="mb-1" htmlFor="Password">
+              <div>
+                <input
+                  required
+                  className="form-control input-modal-styles rounded-0"
+                  type="email"
+                  id="email"
+                  name="email"
+                  onChange={handleEmail}
+                />
+                {errorEmail === "" ? (
+                  ""
+                ) : (
+                  <p className="text-invalid-credentials m-0 mt-2">{errorEmail}</p>
+                )}
+              </div>
+              <label className="mb-1 mt-3" htmlFor="password">
                 Password
               </label>
               <div className="position-relative">
@@ -340,8 +359,8 @@ function Admins() {
                   required
                   className="form-control mb-3 input-modal-styles rounded-0"
                   type={typePassword}
-                  id="Password"
-                  name="Password"
+                  id="password"
+                  name="password"
                   onChange={handlePassword}
                 />
                 {typePassword === "text" ? (
@@ -365,11 +384,7 @@ function Admins() {
                   Cancel
                 </button>
 
-                <button
-                  type="submit"
-                  onClick={hideModalCreate}
-                  className="button-yes-modal saira-bold ms-2"
-                >
+                <button type="submit" className="button-yes-modal saira-bold ms-2">
                   Save changes
                 </button>
               </div>

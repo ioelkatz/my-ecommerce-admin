@@ -102,7 +102,7 @@ body {
 }
 
 .link-active {
-  color: var(--offWhite);
+  color: var(--blizzardBlue);
   font-weight: 600;
   text-decoration: none;
   font-size: 19px;
@@ -125,7 +125,7 @@ body {
 }
 
 .button-yes-modal {
-  border: 2px solid var(--brilliantBlue);
+  border: 2px solid var(--blizzardBlue);
   background: var(--night);
   color: var(--offWhite);
   transition: 0.4s all ease-in-out;
@@ -227,6 +227,7 @@ body {
   border: 1px solid var(--night) !important;
   border-right: none !important;
   background-color: rgba(255, 0, 0, 0);
+  color: var(--night) !important;
 }
 .buscador {
   height: 42px;
@@ -360,6 +361,10 @@ body {
   color: var(--offWhite);
   transition: all 0.4s ease-in-out;
   font-weight: 500;
+}
+
+.text-invalid-credentials {
+  color: rgb(255, 55, 55) !important;
 }
 
 .button-error-page:hover {
@@ -626,7 +631,7 @@ body {
     display: none;
   }
   .link-active {
-    color: #d3a55c;
+    color: var(--blizzardBlue);
   }
   .div-login-styles {
     width: 100%;

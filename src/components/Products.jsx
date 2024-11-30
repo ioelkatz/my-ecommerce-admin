@@ -75,7 +75,7 @@ function Products() {
                       id="carSearcher"
                     />
                     <button className="button-search rounded-end fw-bold px-3 m-0 h-100">
-                      <i className="bi bi-search"></i>
+                      <i className="bi bi-search color-text-night"></i>
                     </button>
                   </div>
                   {/* Boton + */}
@@ -91,7 +91,7 @@ function Products() {
                 </div>
                 {/* Tabla */}
                 <div className="scroll-table">
-                  <Table striped bordered hover responsive variant="lig">
+                  <Table striped bordered hover responsive variant="lig shadow-sm">
                     <thead>
                       <tr>
                         <th>Id</th>
