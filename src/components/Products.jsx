@@ -108,6 +108,7 @@ function Products() {
                             car?.model?.toLowerCase().includes(buscador.toLowerCase()) |
                             car?.brand?.name?.toLowerCase().includes(buscador.toLowerCase()),
                         )
+                        ?.sort((a, b) => a.id - b.id)
                         ?.map((car) => (
                           <Product key={car.id} car={car} />
                         ))}
