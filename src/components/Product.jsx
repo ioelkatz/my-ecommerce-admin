@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 function Product({ car }) {
   const dispatch = useDispatch();
   const [modalEdit, setModalEdit] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
   const brands = useSelector((state) => state.brand);
   const token = useSelector((state) => state.token);
 
@@ -75,6 +76,14 @@ function Product({ car }) {
     setModalEdit(true);
   };
 
+  const hideModalDelete = () => {
+    setModalDelete(false);
+  };
+
+  const showModalDelete = () => {
+    setModalDelete(true);
+  };
+
   return (
     <>
       <tr key={car.id}>
@@ -88,7 +97,7 @@ function Product({ car }) {
             className="bi bi-pencil-fill me-1 me-md-2 cursor-pointer"
           ></i>
           <i
-            onClick={(event) => handleDelete(car, event)}
+            onClick={() => showModalDelete(car)}
             className="ms-1 ms-md-2 bi bi-trash-fill cursor-pointer"
           ></i>
         </td>
@@ -242,6 +251,27 @@ function Product({ car }) {
               </button>
             </div>
           </form>
+        </Modal.Body>
+      </Modal>
+
+      {/* modal Delete */}
+
+      <Modal show={modalDelete} onHide={hideModalDelete}>
+        <Modal.Body className="background-night color-text-our-white saira px-4 position-relative">
+          <i
+            onClick={hideModalDelete}
+            className="bi bi-x x-modal-styles position-absolute cursor-pointer"
+          ></i>
+          <p className="m-0 saira-expanded-bold">{`Do you want to eliminate ${car?.brand.name} ${car?.model}?`}</p>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <button
+              onClick={(event) => handleDelete(car, event)}
+              className="button-yes-modal saira-bold ms-2"
+            >
+              Yes, I am sure
+            </button>
+          </div>
         </Modal.Body>
       </Modal>
     </>

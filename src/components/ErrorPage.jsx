@@ -7,8 +7,8 @@ export default function ErrorPage() {
 
   return (
     <>
-      <div className="py-5 vh-100 d-flex align-items-center">
-        <div className="container text-center color-text-our-white">
+      <div className="py-5 vh-100 d-flex align-items-center color-text-night">
+        <div className="container text-center">
           <h1 className="fw-bold title-error-page m-0">404</h1>
           <p className="fs-4 fw-medium">Page not found</p>
           <div className="d-flex justify-content-center">

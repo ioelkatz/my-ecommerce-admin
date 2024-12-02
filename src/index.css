@@ -355,10 +355,10 @@ body {
 }
 
 .button-error-page {
-  border: 2px solid var(--blizzardBlue) !important;
+  border: 2px solid var(--night) !important;
   width: 167px;
   text-decoration: none;
-  color: var(--offWhite);
+  color: var(--night);
   transition: all 0.4s ease-in-out;
   font-weight: 500;
 }

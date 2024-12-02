@@ -94,11 +94,11 @@ function NavbarTop() {
             onClick={hideModal}
             className="bi bi-x x-modal-styles position-absolute cursor-pointer"
           ></i>
-          <p className="m-0 saira-expanded-bold">Are you sure you want to log out?</p>
+          <p className="m-0 saira-expanded-bold">Are you sure you want to logout?</p>
           <hr />
           <div className="d-flex justify-content-end">
             <Link onClick={() => goodbye()} to="/login">
-              <button className="button-yes-modal saira-bold ms-2">Yes, I want to logout</button>
+              <button className="button-yes-modal saira-bold ms-2">Yes, I am sure</button>
             </Link>
           </div>
         </Modal.Body>
