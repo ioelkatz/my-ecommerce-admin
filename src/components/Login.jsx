@@ -60,6 +60,7 @@ function Login() {
                 type="email"
                 name="email"
                 id="email"
+                placeholder="e.g. admin@admin.com"
               />
               <label className=" mb-2" htmlFor="password">
                 Password
@@ -73,6 +74,7 @@ function Login() {
                   type={typePassword}
                   name="password"
                   id="password"
+                  placeholder="e.g. 123"
                 />
                 {typePassword === "password" ? (
                   <i
